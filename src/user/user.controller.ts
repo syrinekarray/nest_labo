@@ -11,9 +11,14 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Get('')
-  @Roles('admin', 'user')
+  @Roles('admin')
   @UseGuards(AuthGuard(), RolesGuard)
   showAllUsers(@User() user: UserEntity) {
+    return this.userService.showAll();
+  }
+  
+  @Get('all')
+  showAllUsersNoauht() {
     return this.userService.showAll();
   }
 

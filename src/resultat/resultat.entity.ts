@@ -12,9 +12,7 @@ export class ResultatEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  res: string;
-  @Column()
-  description: string;
+  text: string;
 
   @OneToOne(() => TestEntity)
   @JoinColumn()

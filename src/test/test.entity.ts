@@ -7,7 +7,7 @@ export class TestEntity {
   id: number;
 
   @Column() price: number;
-  @Column() category: string;
+  @Column() name: string;
 
   @ManyToOne((type) => UserEntity, (user) => user.tests)
   user: UserEntity;

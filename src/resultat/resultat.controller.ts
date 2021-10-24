@@ -12,9 +12,15 @@ import {
 @Controller('resultat')
 export class ResultatController {
   constructor(private resultatService: ResultatService) {}
+
   @Get()
   showAllResultat() {
     return this.resultatService.showAll();
+  }
+
+  @Get('test')
+  showTestsWithoutResultat() {
+    return this.resultatService.getTestsWithoutResult();
   }
   @Post()
   createResultat(@Body() data: ResultatDto) {
@@ -32,7 +38,7 @@ export class ResultatController {
 
   @Put(':id')
   updateResultat(@Param('id') id: number) {
-    return this.resultatService;
+    return 'nothing ' + id;
   }
 
   @Delete(':id')

@@ -32,7 +32,6 @@ export class UserEntity {
   @OneToMany((type) => TestEntity, (test) => test.user)
   tests: TestEntity[];
 
-  // @OneToMany(Test)
   @BeforeInsert()
   async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10);

@@ -16,6 +16,10 @@ export class TestController {
   showAllTest() {
     return this.testService.showAll();
   }
+  @Get('user/:id')
+  readTestByUserId(@Param('id') id: number) {
+    return this.testService.getTestByUserId(id);
+  }
 
   @Post()
   createTest(@Body() data: TestDto) {
@@ -29,7 +33,7 @@ export class TestController {
 
   @Put(':id')
   updateTest(@Param('id') id: number) {
-    return this.testService;
+    return 'nothing ' + id;
   }
 
   @Delete(':id')

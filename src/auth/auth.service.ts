@@ -31,7 +31,7 @@ export class AuthService {
       role: user.role,
     };
 
-    return this.jwtService.sign(payload);
+    return { token: this.jwtService.sign(payload), user: user };
   }
 
   async signup(signupRequest: SignupRequest) {

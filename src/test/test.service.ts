@@ -1,10 +1,8 @@
-import { Test } from '@nestjs/testing';
 import { TestDto } from './test.dto';
-import { TestController } from './test.controller';
 import { TestEntity } from './test.entity';
-import { Body, Injectable, Param } from '@nestjs/common';
+import { Body, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Not, Repository } from 'typeorm';
 @Injectable()
 export class TestService {
   constructor(
@@ -28,5 +26,12 @@ export class TestService {
   }
   async delete(id: number) {
     return await this.TestRepository.delete({ id });
+  }
+
+  async getTestByUserId(id: number) {
+    return await this.TestRepository.find({ where: { user: id } });
+  }
+  async getTestByArray(ids: number[]) {
+    return await this.TestRepository.find({ where: { id: Not(ids) } });
   }
 }
