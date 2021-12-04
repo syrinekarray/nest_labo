@@ -1,8 +1,8 @@
 import { TestDto } from './test.dto';
-import { TestEntity } from './test.entity';
 import { Body, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Not, Repository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
+import { TestEntity } from './test.entity';
 @Injectable()
 export class TestService {
   constructor(
@@ -32,6 +32,13 @@ export class TestService {
     return await this.TestRepository.find({ where: { user: id } });
   }
   async getTestByArray(ids: number[]) {
-    return await this.TestRepository.find({ where: { id: Not(ids) } });
+    const tests = await getRepository(TestEntity)
+      .createQueryBuilder('test')
+      .where('test.id NOT IN (:ids)', { ids })
+      .getMany();
+
+    return tests;
+    // console.log(await this.TestRepository.find({ where: { id: !In(ids) } }));
+    // return await this.TestRepository.find({ where: { id: !..ids } });
   }
 }

@@ -15,7 +15,7 @@ import { ResultatModule } from './resultat/resultat.module';
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      port: 3307,
+      port: 3306,
       database: 'labo',
       username: 'root',
       password: '',
